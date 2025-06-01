@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Responsive Design with Alerts</title>
+  <style>
+    /* Base styles */
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f6f8;
+    }
+
+    header {
+      background-color: #4b79a1;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      display: flex;
+      flex-wrap: wrap;
+      padding: 20px;
+      justify-content: center;
+    }
+
+    .card {
+      background-color: white;
+      width: 300px;
+      margin: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .alert-btn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      background-color: #4b79a1;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .alert-btn:hover {
+      background-color: #355b88;
+    }
+
+    footer {
+      background-color: #4b79a1;
+      color: white;
+      text-align: center;
+      padding: 15px;
+      position: relative;
+      bottom: 0;
+      width: 100%;
+    }
+
+    /* Tablet styles */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Mobile styles */
+    @media (max-width: 480px) {
+      .card {
+        width: 90%;
+        padding: 15px;
+      }
+
+      header, footer {
+        font-size: 14px;
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Responsive Web Design</h1>
+  <p>Resize the window to see responsiveness</p>
+</header>
+
+<div class="container">
+  <div class="card">
+    <h3>Card 1</h3>
+    <p>This card is part of a responsive layout</p>
+    <button class="alert-btn" onclick="showAlert('Card 1')">Click Me</button>
+  </div>
+  <div class="card">
+    <h3>Card 2</h3>
+    <p>This card also has part of responsive layout</p>
+    <button class="alert-btn" onclick="showAlert('Card 2')">Click Me</button>
+  </div>
+  <div class="card">
+    <h3>Card 3</h3>
+    <p>Each button will show an alert with its card name.</p>
+    <button class="alert-btn" onclick="showAlert('Card 3')">Click Me</button>
+  </div>
+</div>
+
+<footer>
+  &copy; 2025 Responsive Design Example
+</footer>
+
+<script>
+  function showAlert(cardName) {
+    alert("You clicked on " + cardName);
+  }
+</script>
+
+</body>
+</html>
