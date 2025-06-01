@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Smart Quiz</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #d3cce3, #e9e4f0);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .quiz-container {
+      background-color: #ffffff;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+
+    .question {
+      font-size: 20px;
+      margin: 20px 0;
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .option-btn {
+      padding: 12px;
+      margin: 8px 0;
+      background-color: #6a11cb;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .option-btn:hover {
+      background-color: #2575fc;
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .quiz-container {
+        padding: 20px;
+      }
+
+      .option-btn {
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <h2>General Knowledge Quiz</h2>
+  <div id="quiz">
+    <!-- Quiz content will load here -->
+  </div>
+  <div id="result"></div>
+</div>
+
+<script>
+  const questions = [
+    {
+      question: "What is the capital of Australia?",
+      options: ["Sydney", "Melbourne", "Canberra", "Brisbane"],
+      answer: "Canberra"
+    },
+    {
+      question: "Which planet is known as the Red Planet?",
+      options: ["Earth", "Venus", "Mars", "Jupiter"],
+      answer: "Mars"
+    },
+    {
+      question: "Who wrote the play 'Romeo and Juliet'?",
+      options: ["William Wordsworth", "William Shakespeare", "Jane Austen", "George Orwell"],
+      answer: "William Shakespeare"
+    },
+    {
+      question: "Which language is used to style web pages?",
+      options: ["HTML", "JavaScript", "Python", "CSS"],
+      answer: "CSS"
+    },
+    {
+      question: "What gas do plants absorb from the atmosphere?",
+      options: ["Oxygen", "Hydrogen", "Carbon Dioxide", "Nitrogen"],
+      answer: "Carbon Dioxide"
+    }
+  ];
+
+  let currentIndex = 0;
+  let score = 0;
+
+  function loadQuestion() {
+    const quizDiv = document.getElementById("quiz");
+    const q = questions[currentIndex];
+    quizDiv.innerHTML = `
+      <div class="question"><strong>Q${currentIndex + 1}:</strong> ${q.question}</div>
+      <div class="options">
+        ${q.options.map(option => `
+          <button class="option-btn" onclick="selectAnswer('${option}')">${option}</button>
+        `).join('')}
+      </div>
+    `;
+  }
+
+  function selectAnswer(selected) {
+    if (selected === questions[currentIndex].answer) {
+      score++;
+    }
+    currentIndex++;
+    if (currentIndex < questions.length) {
+      loadQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    document.getElementById("quiz").innerHTML = "";
+    document.getElementById("result").innerHTML = `
+      ✅ You scored <strong>${score}</strong> out of <strong>${questions.length}</strong>.
+      <br><br>
+      ${score === questions.length ? "🎉 Excellent work!" :
+        score >= 3 ? "👍 Good job!" :
+        "🧠 Keep practicing!"}
+    `;
+  }
+
+  // Initialize the quiz
+  loadQuestion();
+</script>
+
+</body>
+</html>
